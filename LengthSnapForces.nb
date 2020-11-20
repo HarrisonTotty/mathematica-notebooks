@@ -1,0 +1,562 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21267,        554]
+NotebookOptionsPosition[     20141,        520]
+NotebookOutlinePosition[     20478,        535]
+CellTagsIndexPosition[     20435,        532]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$HistoryLength", "=", "0"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.710175612366599*^9, 
+  3.710175617588786*^9}},ExpressionUUID->"1bd27c08-b711-4126-b531-\
+6b68babf28b9"],
+
+Cell[CellGroupData[{
+
+Cell["Length-Snapping Forces", "Title",
+ CellChangeTimes->{{3.7101755828167562`*^9, 
+  3.710175599540291*^9}},ExpressionUUID->"abf90107-384d-4cdb-9d9e-\
+f95eb94122e2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "ParticleSet", ",", "ParticlePlot", ",", "SingleAcceleration", ",", 
+     "UpdateParticle", ",", "UpdateParticles", ",", "RunSimulation", ",", 
+     "RenderSimulation"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ParticleSet", "[", "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"RandomReal", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "$MaximumPosition"}], ",", " ", "$MaximumPosition"}],
+            "}"}], ",", " ", "$Dimensions"}], "]"}], ",", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", " ", "$Dimensions"}], "]"}], ",", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", " ", "$Dimensions"}], "]"}], ",", " ", 
+        RowBox[{"RandomReal", "[", 
+         RowBox[{"{", 
+          RowBox[{"$Minimump", ",", "$Maximump"}], "}"}], "]"}], ",", " ", 
+        RowBox[{"RandomReal", "[", 
+         RowBox[{"{", 
+          RowBox[{"$Minimumq", ",", "$Maximumq"}], "}"}], "]"}]}], "}"}], ",",
+       "$n"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ParticlePlot", "[", 
+     RowBox[{"p_", ",", " ", "i_", ",", " ", "title_"}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"points", "=", 
+        RowBox[{"Map", "[", 
+         RowBox[{"Point", ",", 
+          RowBox[{"p", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "i"}], "]"}], "]"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"$Dimensions", "\[Equal]", "3."}], ",", "\[IndentingNewLine]", 
+        RowBox[{"ListPointPlot3D", "[", 
+         RowBox[{
+          RowBox[{"p", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "i"}], "]"}], "]"}], ",", " ", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "$MaximumPosition"}], "*", "1.1"}], ",", 
+               RowBox[{"$MaximumPosition", "*", "1.1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "$MaximumPosition"}], "*", "1.1"}], ",", 
+               RowBox[{"$MaximumPosition", "*", "1.1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "$MaximumPosition"}], "*", "1.1"}], ",", 
+               RowBox[{"$MaximumPosition", "*", "1.1"}]}], "}"}]}], "}"}]}], 
+          ",", " ", 
+          RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", " ", 
+          RowBox[{"PlotLabel", "\[Rule]", "title"}], ",", " ", 
+          RowBox[{"Filling", "\[Rule]", "Bottom"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Graphics", "[", 
+         RowBox[{"points", ",", " ", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "$MaximumPosition"}], "*", "1.1"}], ",", 
+               RowBox[{"$MaximumPosition", "*", "1.1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "$MaximumPosition"}], "*", "1.1"}], ",", 
+               RowBox[{"$MaximumPosition", "*", "1.1"}]}], "}"}]}], "}"}]}], 
+          ",", " ", 
+          RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", " ", 
+          RowBox[{"PlotLabel", "\[Rule]", "title"}]}], "]"}]}], 
+       "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"SingleAcceleration", "[", 
+     RowBox[{"i_", ",", " ", "c_"}], "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"i", "[", 
+        RowBox[{"[", "1.", "]"}], "]"}], "\[Equal]", 
+       RowBox[{"c", "[", 
+        RowBox[{"[", "1.", "]"}], "]"}]}], ",", 
+      RowBox[{"Table", "[", 
+       RowBox[{"0.", ",", " ", "$Dimensions"}], "]"}], ",", 
+      RowBox[{"Block", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"distancevector", "=", 
+          RowBox[{
+           RowBox[{"c", "[", 
+            RowBox[{"[", "1.", "]"}], "]"}], "-", 
+           RowBox[{"i", "[", 
+            RowBox[{"[", "1.", "]"}], "]"}]}]}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"dnorm", "=", 
+            RowBox[{"Norm", "[", "distancevector", "]"}]}], "}"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"dnorm", " ", "<", "$MinimumDistance"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"RandomReal", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "$MaximumAcceleration"}], ",", " ", 
+                "$MaximumAcceleration"}], "}"}], ",", " ", "$Dimensions"}], 
+             "]"}], ",", " ", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"dnorm", ">", 
+               RowBox[{"c", "[", 
+                RowBox[{"[", "4.", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               FractionBox[
+                RowBox[{"$G", " ", 
+                 RowBox[{"i", "[", 
+                  RowBox[{"[", "5.", "]"}], "]"}], " ", 
+                 RowBox[{"c", "[", 
+                  RowBox[{"[", "5.", "]"}], "]"}]}], 
+                SuperscriptBox["dnorm", 
+                 RowBox[{"$Dimensions", "-", "1"}]]], 
+               RowBox[{"Normalize", "[", "distancevector", "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               FractionBox[
+                RowBox[{
+                 RowBox[{"-", " ", "$G"}], " ", 
+                 RowBox[{"i", "[", 
+                  RowBox[{"[", "5.", "]"}], "]"}], " ", 
+                 RowBox[{"c", "[", 
+                  RowBox[{"[", "5.", "]"}], "]"}]}], 
+                SuperscriptBox["dnorm", 
+                 RowBox[{"$Dimensions", "-", "1."}]]], 
+               RowBox[{"Normalize", "[", "distancevector", "]"}]}]}], 
+             "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+         "]"}]}], "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"UpdateParticle", "[", 
+     RowBox[{"in_", ",", " ", "p_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "acc", ",", " ", "vel", ",", " ", "pos", ",", " ", "nacc", ",", " ", 
+        "nvel", ",", " ", "npos"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"acc", "=", 
+        RowBox[{"Sum", "[", 
+         RowBox[{
+          RowBox[{"SingleAcceleration", "[", 
+           RowBox[{"in", ",", " ", 
+            RowBox[{"p", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"Length", "[", "p", "]"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"nacc", "=", 
+        RowBox[{"Norm", "[", "acc", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"nacc", ">", "$MaximumAcceleration"}], ",", " ", 
+         RowBox[{"acc", "=", 
+          RowBox[{"$MaximumAcceleration", " ", 
+           RowBox[{"Normalize", "[", "acc", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"nacc", "<", "$MinimumAcceleration"}], ",", " ", 
+         RowBox[{"acc", "=", 
+          RowBox[{"$MinimumAcceleration", " ", 
+           RowBox[{"Normalize", "[", "acc", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"vel", "=", 
+        RowBox[{
+         RowBox[{"in", "[", 
+          RowBox[{"[", "2.", "]"}], "]"}], "+", "acc"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"nvel", "=", 
+        RowBox[{"Norm", "[", "vel", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"nvel", ">", "$MaximumVelocity"}], ",", " ", 
+         RowBox[{"vel", "=", 
+          RowBox[{"$MaximumVelocity", " ", 
+           RowBox[{"Normalize", "[", "vel", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"nvel", "<", "$MinimumVelocity"}], ",", " ", 
+         RowBox[{"vel", "=", 
+          RowBox[{"$MinimumVelocity", " ", 
+           RowBox[{"Normalize", "[", "vel", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"pos", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"in", "[", 
+          RowBox[{"[", "1.", "]"}], "]"}], "+", "vel"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"npos", " ", "=", " ", 
+        RowBox[{"Norm", "[", "pos", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"npos", ">", "$MaximumPosition"}], ",", " ", 
+         RowBox[{"pos", "=", 
+          RowBox[{"$MaximumPosition", " ", 
+           RowBox[{"Normalize", "[", "pos", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"npos", "<", "$MinimumPosition"}], ",", " ", 
+         RowBox[{"pos", "=", 
+          RowBox[{"$MinimumPosition", " ", 
+           RowBox[{"Normalize", "[", "pos", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"npos", ">", "$MaximumPosition"}], ",", " ", 
+           RowBox[{"pos", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Times", "[", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", " ", "#"}], "]"}], "&"}], "/@", " ", 
+             "pos"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"npos", "<", "$MinimumPosition"}], ",", " ", 
+           RowBox[{"pos", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Times", "[", 
+               RowBox[{
+                RowBox[{"-", "1"}], ",", " ", "#"}], "]"}], "&"}], "/@", " ", 
+             "pos"}]}]}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"pos", ",", " ", "vel", ",", " ", "acc", ",", " ", 
+         RowBox[{"in", "[", 
+          RowBox[{"[", "4.", "]"}], "]"}], ",", " ", 
+         RowBox[{"in", "[", 
+          RowBox[{"[", "5.", "]"}], "]"}]}], "}"}]}]}], "\[IndentingNewLine]",
+      "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"UpdateParticles", "[", "p_", "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"np", " ", "=", " ", "p"}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"np", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "=", 
+          RowBox[{"UpdateParticle", "[", 
+           RowBox[{
+            RowBox[{"p", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", " ", "p"}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", 
+           RowBox[{"Length", "[", "p", "]"}]}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "np"}]}], "\[IndentingNewLine]", "]"}]}], ";"}],
+   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"RunSimulation", "[", 
+     RowBox[{"p_", ",", " ", "t_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"h", " ", "=", " ", 
+        RowBox[{"{", "p", "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"h", " ", "=", " ", 
+          RowBox[{"Append", "[", 
+           RowBox[{"h", ",", " ", 
+            RowBox[{"UpdateParticles", "[", 
+             RowBox[{"h", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", "t"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "h"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RenderSimulation", "[", 
+    RowBox[{"s_", ",", " ", "i_", ",", " ", "title_"}], "]"}], ":=", 
+   RowBox[{"Block", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"data", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Image", "@", 
+          RowBox[{"ParticlePlot", "[", 
+           RowBox[{
+            RowBox[{"s", "[", 
+             RowBox[{"[", "j", "]"}], "]"}], ",", " ", "i", ",", " ", 
+            "title"}], "]"}]}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", " ", 
+           RowBox[{"Length", "@", "s"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ListAnimate", "[", 
+      RowBox[{"data", ",", " ", 
+       RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+       RowBox[{"DisplayAllSteps", "\[Rule]", "True"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->CompressedData["
+1:eJwdz2kow3EAxvE5ojVqueZc8YIkRQpzhAyjCYtIVsvcDak1ErYc7Y1jRcMc
+ITZ5QY7cxBtiMpmmVitpZO5cjVf+z+/F0+fltye4vFFQ6Uij0YKpQf1ubczo
+7FNaRMhlKjyZGuTCT+tCHVwRN0phTfUq8SiW2wpLdDvEnEJnOSwNH1BAJj1X
+BeNGedOwheGzChnrk8dQKTzUw/kgthE2XWfeQr7D8ANcW0qxw8QAuquGUmIR
+MKDWmO0JLfXfLHjAP0uA0otXPoyt6JBDa7ewB2Z0NqhgP7NbDb84z/sa8lNg
+gne3SqK6WXQHOW/0N8hb0dhJV6olmsJ8ncYoZw0ZLjDplcOCN6e9RL+q01zY
+4B9YACPz9oqg489GMZwJE4tg6NU5cejPqoL8cdkgNC5faGDLhH0MdrEUWrh5
+30ds4yVvkX52+jY0mKOvYa8hnviRV/YOXxJsxEWbIko995RWYcmJgYVsfdYw
+pZeOzYNmZrsQSmyPIvgr83Abocw/cveG/1jLJDc=
+  
+  "],ExpressionUUID->"ef593dcb-50ea-4c94-9053-3a9c54ce8fb4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{"particles", ",", " ", "sim", ",", " ", "rendered"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$n", " ", "=", " ", "50.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$t", "=", "500.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$G", " ", "=", " ", "1.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$Dimensions", " ", "=", " ", "2.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MinimumDistance", " ", "=", " ", "0.5"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MinimumPosition", " ", "=", " ", "0.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MaximumPosition", " ", "=", " ", "100.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MinimumVelocity", " ", "=", " ", "0.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MaximumVelocity", " ", "=", " ", "100.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MinimumAcceleration", " ", "=", " ", "0.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$MaximumAcceleration", " ", "=", " ", "100.0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$Minimump", " ", "=", 
+   FractionBox["$MaximumPosition", "4."]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$Maximump", "=", 
+   FractionBox["$MaximumPosition", "3."]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$Minimumq", " ", "=", " ", "1.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Maximumq", " ", "=", " ", "10.0"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"particles", " ", "=", " ", 
+   RowBox[{"ParticleSet", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sim", " ", "=", " ", 
+   RowBox[{"RunSimulation", "[", 
+    RowBox[{"particles", ",", " ", "$t"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.710176090790941*^9, 3.7101762314393167`*^9}, {
+   3.7101762668084393`*^9, 3.710176329045128*^9}, {3.710176933933181*^9, 
+   3.710176944011806*^9}, {3.71017698215431*^9, 3.710176994492275*^9}, {
+   3.710177102908411*^9, 3.710177121451371*^9}, {3.710177353614094*^9, 
+   3.710177366266749*^9}, {3.710177652949301*^9, 3.710177657505293*^9}, {
+   3.7101777800759373`*^9, 3.7101778708932467`*^9}, {3.71017810533807*^9, 
+   3.710178116326379*^9}, {3.7101785201206827`*^9, 3.710178539466518*^9}, {
+   3.710178816728002*^9, 3.710178882263638*^9}, {3.710178934885857*^9, 
+   3.710178982671935*^9}, 3.710179018410256*^9, {3.7101792126225758`*^9, 
+   3.710179212879294*^9}, {3.710179273292885*^9, 3.710179275031302*^9}, {
+   3.710179365963922*^9, 3.710179415989887*^9}, {3.7101797382365217`*^9, 
+   3.71017980327096*^9}, {3.710180112709075*^9, 3.7101801206488943`*^9}, {
+   3.710180251277782*^9, 3.710180317228904*^9}, {3.7101803625816517`*^9, 
+   3.710180367269762*^9}, {3.7101804469479733`*^9, 3.71018046476931*^9}, {
+   3.710180866648493*^9, 3.7101808790146437`*^9}, {3.710181544700171*^9, 
+   3.710181551029593*^9}, {3.7106938292008*^9, 3.710693861059301*^9}, {
+   3.7106938981556396`*^9, 3.710693921514285*^9}, {3.710697656447764*^9, 
+   3.710697750003078*^9}, {3.711215737246784*^9, 3.7112157580790653`*^9}, {
+   3.711215888738491*^9, 3.7112159062880297`*^9}, {3.71121599431343*^9, 
+   3.711215997084687*^9}, {3.711216101549898*^9, 3.7112161088827*^9}, {
+   3.711216314744294*^9, 
+   3.711216334799302*^9}},ExpressionUUID->"a1884f60-dc79-45c0-ba93-\
+92096a328091"],
+
+Cell[BoxData[
+ RowBox[{"rendered", " ", "=", " ", 
+  RowBox[{"RenderSimulation", "[", 
+   RowBox[{"sim", ",", " ", "1.", ",", " ", "\"\<Position\>\""}], 
+   "]"}]}]], "Input",ExpressionUUID->"95ca0665-2901-4e0f-93ba-3a4cda6acb1e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Image", "@", 
+      RowBox[{"ParticlePlot", "[", 
+       RowBox[{
+        RowBox[{"sim", "[", 
+         RowBox[{"[", "j", "]"}], "]"}], ",", " ", "1.", ",", " ", 
+        RowBox[{"\"\<Generation \>\"", "<>", 
+         RowBox[{"ToString", "@", "j"}]}]}], "]"}]}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", " ", 
+       RowBox[{"Length", "@", "sim"}]}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.710696344161517*^9, 
+  3.7106963842338457`*^9}},ExpressionUUID->"cfc93798-6808-4401-a988-\
+879364355025"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<length-forces.gif\>\"", ",", "data"}], "]"}]], "Input",
+ CellChangeTimes->{{3.710696427660716*^9, 
+  3.710696456886846*^9}},ExpressionUUID->"08f91af7-1eeb-41f3-aaad-\
+6a4681fddd4a"],
+
+Cell[BoxData["\<\"length-forces.gif\"\>"], "Output",
+ CellChangeTimes->{
+  3.710696471799336*^9},ExpressionUUID->"fb70ef02-430b-4def-838b-\
+d56d8bd4e413"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{840, 1026},
+WindowMargins->{{Automatic, 840}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (March 13, 2017)",
+StyleDefinitions->"MyStyle3.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 233, 6, 50, "Input", "ExpressionUUID" -> \
+"1bd27c08-b711-4126-b531-6b68babf28b9",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[816, 30, 167, 3, 95, "Title", "ExpressionUUID" -> \
+"abf90107-384d-4cdb-9d9e-f95eb94122e2"],
+Cell[986, 35, 14351, 365, 1509, "Input", "ExpressionUUID" -> \
+"ef593dcb-50ea-4c94-9053-3a9c54ce8fb4",
+ InitializationCell->True],
+Cell[15340, 402, 3483, 75, 486, "Input", "ExpressionUUID" -> \
+"a1884f60-dc79-45c0-ba93-92096a328091"],
+Cell[18826, 479, 230, 4, 34, "Input", "ExpressionUUID" -> \
+"95ca0665-2901-4e0f-93ba-3a4cda6acb1e"],
+Cell[19059, 485, 637, 17, 34, "Input", "ExpressionUUID" -> \
+"cfc93798-6808-4401-a988-879364355025"],
+Cell[CellGroupData[{
+Cell[19721, 506, 235, 5, 34, "Input", "ExpressionUUID" -> \
+"08f91af7-1eeb-41f3-aaad-6a4681fddd4a"],
+Cell[19959, 513, 154, 3, 32, "Output", "ExpressionUUID" -> \
+"fb70ef02-430b-4def-838b-d56d8bd4e413"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

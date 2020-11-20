@@ -1,0 +1,499 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15997,        491]
+NotebookOptionsPosition[     12615,        409]
+NotebookOutlinePosition[     12952,        424]
+CellTagsIndexPosition[     12909,        421]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[StyleBox["Quantum Fields & Strings - For Mathematicians!",
+ FontColor->RGBColor[0., 0.6666666666666666, 1.]]], "Title",
+ CellChangeTimes->{{3.711273913781961*^9, 
+  3.71127396977186*^9}},ExpressionUUID->"1c230c62-b06a-401a-ad34-\
+9acd247fe815"],
+
+Cell["Notes by Harrison Totty", "Text",
+ CellChangeTimes->{{3.711274043870945*^9, 
+  3.711274057667251*^9}},ExpressionUUID->"848d4016-6063-432b-a67f-\
+f3a1f314e5d8"],
+
+Cell[CellGroupData[{
+
+Cell["Part 1 - Classical Fields & Supersymmetry", "Chapter",
+ CellChangeTimes->{{3.711274089219824*^9, 
+  3.711274108814735*^9}},ExpressionUUID->"8b6a6aea-f670-464b-9128-\
+199c8dd7298a"],
+
+Cell[CellGroupData[{
+
+Cell["Chapter 1 - Multilinear Algebra", "Subchapter",
+ CellChangeTimes->{{3.711274191070177*^9, 
+  3.711274206078033*^9}},ExpressionUUID->"6a67bb77-e999-4370-b4bc-\
+878f63a48be4"],
+
+Cell[CellGroupData[{
+
+Cell["1.1 - The sign rule", "Section",
+ CellChangeTimes->{{3.7112742262667837`*^9, 
+  3.711274235596714*^9}},ExpressionUUID->"0168c141-06f9-4e08-98fe-\
+6faed806cdbd"],
+
+Cell["\<\
+The ground rule of superalgebra is that all objects considered should be mod \
+2 graded, and that in all classical formulas, whenever the order in which two \
+odd quantities appear is changed, a minus sign appears.\
+\>", "Text",
+ CellChangeTimes->{{3.711274295557084*^9, 
+  3.711274382267249*^9}},ExpressionUUID->"c4d6841e-eb05-44e0-ae0c-\
+ff074423e80b"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Superalgebra",
+ FontWeight->"Bold"]], "Item",
+ CellChangeTimes->{{3.711274462771757*^9, 
+  3.711274484427408*^9}},ExpressionUUID->"7b38e7bf-48bc-4b25-a330-\
+4e42a1866ba1"],
+
+Cell[TextData[{
+ "In mathematics and theoretical physics, a ",
+ StyleBox["superalgebra",
+  FontSlant->"Italic"],
+ " is a ",
+ Cell[BoxData[
+  SubscriptBox["\[DoubleStruckCapitalZ]", "2"]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "f2dae128-d906-4ec1-bfea-46f5d7caa227"],
+ "-graded algebra. That is, it is an algebra over a commutative ring or field \
+with a decomposition into \[OpenCurlyDoubleQuote]even\[CloseCurlyDoubleQuote] \
+and \[OpenCurlyDoubleQuote]odd\[CloseCurlyDoubleQuote] pieces and an operator \
+that respects the grading. The prefix \[OpenCurlyDoubleQuote]super\
+\[CloseCurlyDoubleQuote] comes from the theory of ",
+ StyleBox["supersymmetry",
+  FontSlant->"Italic"],
+ " in theoretical physics. Superalgebras and their representations, ",
+ StyleBox["supermodules",
+  FontSlant->"Italic"],
+ ", provide an algebraic framework for formulating supersymmetry."
+}], "ItemParagraph",
+ CellChangeTimes->{{3.711274495018165*^9, 
+  3.711274757146378*^9}},ExpressionUUID->"076fc076-504b-48cf-8fc9-\
+cc60eb080a30"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Here are some examples. For simplicity, we fix a ground field ",
+ StyleBox["k",
+  FontSlant->"Italic"],
+ " of characteristic zero, which the reader may safely assume to be \
+\[DoubleStruckCapitalR] or \[DoubleStruckCapitalC]."
+}], "Text",
+ CellChangeTimes->{{3.7112749128547783`*^9, 
+  3.7112750560004473`*^9}},ExpressionUUID->"e4091b43-cdef-43c8-a7bc-\
+aae7210cef60"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Characteristic",
+ FontWeight->"Bold"]], "Item",
+ CellChangeTimes->{{3.71127522241982*^9, 3.7112752308497877`*^9}, {
+  3.711275446595714*^9, 
+  3.711275447564583*^9}},ExpressionUUID->"c7c5895f-5186-4a28-93c4-\
+55186cf61270"],
+
+Cell[TextData[{
+ "The characteristic of a ring ",
+ StyleBox["R",
+  FontSlant->"Italic"],
+ ", often denoted char(",
+ StyleBox["R",
+  FontSlant->"Italic"],
+ "), is defined to be the smallest number of times one must use the ring\
+\[CloseCurlyQuote]s multiplicative identity element in a sum to get the \
+additive identity element. A ring is said to have characteristic zero if this \
+sum never reaches the additive identity. The characteristic of any field is \
+either zero or a prime number. A field of non-zero characteristic is called a \
+field of ",
+ StyleBox["finite, positive, ",
+  FontSlant->"Italic"],
+ "or",
+ StyleBox[" prime characteristic",
+  FontSlant->"Italic"],
+ "."
+}], "ItemParagraph",
+ CellChangeTimes->{{3.711275240344241*^9, 
+  3.711275542410796*^9}},ExpressionUUID->"539e114f-2b05-442c-b408-\
+a6dba94267d5"]
+}, Open  ]],
+
+Cell[TextData[{
+ "A ",
+ StyleBox["super vector space",
+  FontSlant->"Italic"],
+ " is a \[DoubleStruckCapitalZ]/2\[DoubleStruckCapitalZ]-graded vector \
+space:"
+}], "Text",
+ CellChangeTimes->{{3.711275713911899*^9, 
+  3.711275753548997*^9}},ExpressionUUID->"290119ec-10ba-4606-80ec-\
+9298df1b3863"],
+
+Cell[BoxData[
+ RowBox[{"V", " ", "=", " ", 
+  RowBox[{
+   SubscriptBox["V", "0"], "\[CirclePlus]", 
+   SubscriptBox["V", "1"]}]}]], "DisplayFormula",
+ CellChangeTimes->{{3.711275769300066*^9, 3.7112758050424347`*^9}, {
+  3.711275836012649*^9, 
+  3.71127584327146*^9}},ExpressionUUID->"2739be5c-595d-4502-9f56-\
+8acca457d689"],
+
+Cell[TextData[{
+ "An element ",
+ StyleBox["v",
+  FontSlant->"Italic"],
+ " of ",
+ Cell[BoxData[
+  SubscriptBox["V", "0"]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "a28a10f9-664e-4a08-a761-9a6c47e7898e"],
+ " (resp. ",
+ Cell[BoxData[
+  SubscriptBox["V", "1"]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "f1e3091a-4055-423b-bc17-7abb51b49344"],
+ ") is said to be even (resp. odd). Its parity in \[DoubleStruckCapitalZ]/2\
+\[DoubleStruckCapitalZ] is denoted ",
+ StyleBox["p(a)",
+  FontSlant->"Italic"],
+ ". A ",
+ StyleBox["morphism",
+  FontSlant->"Italic"],
+ " from a super vector space ",
+ StyleBox["V",
+  FontSlant->"Italic"],
+ " to another super vector space ",
+ StyleBox["W",
+  FontSlant->"Italic"],
+ " is a \[DoubleStruckCapitalZ]/2\[DoubleStruckCapitalZ]-degree preserving \
+linear map from ",
+ StyleBox["V",
+  FontSlant->"Italic"],
+ " to ",
+ StyleBox["W",
+  FontSlant->"Italic"],
+ ". With this notion of morphisms, super vector spaces form an abelian \
+category. The ",
+ StyleBox["parity reversing functor",
+  FontSlant->"Italic"],
+ " \[Product] is defined by:"
+}], "Text",
+ CellChangeTimes->{{3.7112758628821363`*^9, 3.711276157024387*^9}, {
+  3.7112762123353853`*^9, 
+  3.711276222912107*^9}},ExpressionUUID->"990975b7-566b-4d28-ada1-\
+4d837b5806e8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SubscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Product]", "V"}], ")"}], "0"], " ", ":=", " ", 
+   SubscriptBox["V", "1"]}], ",", " ", 
+  RowBox[{
+   SubscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Product]", "V"}], ")"}], "1"], " ", ":=", " ", 
+   SubscriptBox["V", "0"]}]}]], "DisplayFormula",
+ CellChangeTimes->{{3.7112762420170927`*^9, 
+  3.711276299488668*^9}},ExpressionUUID->"b6280709-ba42-41e9-8478-\
+0d03dce02c81"],
+
+Cell[TextData[{
+ "If ",
+ StyleBox["V",
+  FontSlant->"Italic"],
+ " is finite dimensional, we denote its ",
+ StyleBox["dimension",
+  FontSlant->"Italic"],
+ " to be the pair of integers (dim ",
+ Cell[BoxData[
+  SubscriptBox["V", "0"]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "19b63f85-f1f6-42d7-84e5-e89ee8247b60"],
+ ", dim ",
+ Cell[BoxData[
+  SubscriptBox["V", "1"]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "5f50adfb-56b4-44a1-b3f1-a159583d7592"],
+ "), usually denoted ",
+ Cell[BoxData[
+  RowBox[{
+   SubscriptBox["m", "0"], "|", 
+   SubscriptBox["m", "1"]}]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "cd1734e2-446c-4f61-b1f5-3f8e2384b006"],
+ " for ",
+ Cell[BoxData[
+  RowBox[{
+   SubscriptBox["m", "i"], "=", " ", 
+   RowBox[{"dim", 
+    RowBox[{"(", 
+     SubscriptBox["V", "i"], ")"}]}]}]],
+  FormatType->"StandardForm",ExpressionUUID->
+  "70755484-a45f-4570-9613-2f58789aae51"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.711276311055793*^9, 
+  3.7112764472450123`*^9}},ExpressionUUID->"73a9185d-2524-4a8a-b325-\
+ba9446232ecb"],
+
+Cell[TextData[{
+ "The ",
+ StyleBox["tensor product",
+  FontSlant->"Italic"],
+ " of super vector spaces ",
+ StyleBox["V",
+  FontSlant->"Italic"],
+ " and ",
+ StyleBox["W",
+  FontSlant->"Italic"],
+ " is the tensor product of the underlying vector spaces, with the \
+\[DoubleStruckCapitalZ]/2\[DoubleStruckCapitalZ]-grading:"
+}], "Text",
+ CellChangeTimes->{{3.711817854061743*^9, 
+  3.7118179143683*^9}},ExpressionUUID->"9ffd17ff-7d0c-41b1-8392-12444963cae3"],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox[
+   RowBox[{"(", 
+    RowBox[{"V", "\[CircleTimes]", "W"}], ")"}], "k"], "=", " ", 
+  RowBox[{
+   UnderscriptBox["\[CirclePlus]", 
+    RowBox[{
+     RowBox[{"i", "+", "j"}], "=", "k"}]], 
+   RowBox[{
+    SubscriptBox["V", "i"], "\[CircleTimes]", 
+    SubscriptBox["W", "j"]}]}]}]], "DisplayFormula",
+ CellChangeTimes->{{3.7118179247480993`*^9, 3.711817954734559*^9}, {
+  3.7118179955354424`*^9, 
+  3.7118180208307657`*^9}},ExpressionUUID->"9ec4cb32-9230-48c3-b698-\
+aee31bcafb3c"],
+
+Cell["\<\
+The tensor product functor is additive and exact in each variable. In \
+addition:\
+\>", "Text",
+ CellChangeTimes->{{3.71181803392415*^9, 3.711818082319768*^9}, 
+   3.711818332210807*^9, {3.7118185537169933`*^9, 
+   3.711818561826421*^9}},ExpressionUUID->"04574f5c-1a66-49b6-9d66-\
+e7ed5e4f6968"],
+
+Cell["It has a unit object", "Text",
+ CellChangeTimes->{{3.711818323727519*^9, 3.711818328655094*^9}, 
+   3.711818567063336*^9},ExpressionUUID->"88c41d0a-04b6-473c-bb2c-\
+70ed90294bc8"],
+
+Cell[TextData[{
+ "If ",
+ StyleBox["1",
+  FontVariations->{"Underline"->True}],
+ " is the vector space ",
+ StyleBox["k",
+  FontSlant->"Italic"],
+ " in even degree, ",
+ StyleBox["1",
+  FontVariations->{"Underline"->True}],
+ " \[CircleTimes] V and V \[CircleTimes] ",
+ StyleBox["1",
+  FontVariations->{"Underline"->True}],
+ " are canonically isomorphic to V, by 1 \[CircleTimes] v,  v \[CircleTimes] \
+1 \[Function] v"
+}], "ItemParagraph",
+ CellChangeTimes->{{3.711818089045066*^9, 
+  3.7118183085939074`*^9}},ExpressionUUID->"671f9d90-c304-4bfb-ba8a-\
+deaee13858f3"],
+
+Cell["It is associative", "Text",
+ CellChangeTimes->{{3.7118184039234858`*^9, 3.711818411036253*^9}, 
+   3.711818569555787*^9},ExpressionUUID->"dcc7afa5-59f8-4572-bb13-\
+c1dc87186eef"],
+
+Cell["\<\
+(u \[CircleTimes] v) \[CircleTimes] w \[Function] u \[CircleTimes] (v \
+\[CircleTimes] w) is a canonical isomorphism from (U \[CircleTimes] V) \
+\[CircleTimes] W  to  U \[CircleTimes] (V \[CircleTimes] W)\
+\>", "ItemParagraph",
+ CellChangeTimes->{{3.711818427407358*^9, 
+  3.711818537219892*^9}},ExpressionUUID->"ac52881a-9ae3-42b6-b63a-\
+b595d01fd904"],
+
+Cell[TextData[{
+ "\nThe sign rule appears in the definition of the ",
+ StyleBox["commutativity isomorphism",
+  FontSlant->"Italic"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.711818590173617*^9, 
+  3.711818626837523*^9}},ExpressionUUID->"150e572e-a710-4cf2-a6e0-\
+b177cda02d34"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SubscriptBox["c", 
+    RowBox[{"V", ",", "W"}]], ":", " ", 
+   RowBox[{"V", "\[CircleTimes]", "W"}]}], "\[Rule]", 
+  RowBox[{"W", "\[CircleTimes]", "V"}]}]], "DisplayFormulaNumbered",
+ CellChangeTimes->{{3.71181864648604*^9, 
+  3.711818689274301*^9}},ExpressionUUID->"d9bffd09-4c7e-497c-9e1e-\
+abcdaf0a4093"],
+
+Cell["Which is in turn defined by:", "Text",
+ CellChangeTimes->{{3.711818698107161*^9, 
+  3.711818705693274*^9}},ExpressionUUID->"860c69a4-6915-437a-98e7-\
+e8b22832defe"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"v", "\[CircleTimes]", "w"}], "\[Function]", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], ")"}], 
+    RowBox[{"p", 
+     RowBox[{"(", "v", ")"}], "p", 
+     RowBox[{"(", "w", ")"}]}]], 
+   RowBox[{"w", "\[CircleTimes]", "v"}]}]}]], "DisplayFormula",
+ CellChangeTimes->{{3.7118187165886717`*^9, 
+  3.711818759467465*^9}},ExpressionUUID->"64d4818f-5d54-45d8-9a77-\
+f5497593cb06"],
+
+Cell[TextData[{
+ "for ",
+ StyleBox["v",
+  FontSlant->"Italic"],
+ " and ",
+ StyleBox["w",
+  FontSlant->"Italic"],
+ " homogeneous (for now on, homogeneity of the relevant quantities will be \
+tacitly assumed when writing formulas)."
+}], "Text",
+ CellChangeTimes->{{3.7118187715554247`*^9, 3.711818790960452*^9}, {
+  3.7118188355787373`*^9, 
+  3.711818880314204*^9}},ExpressionUUID->"6313dedd-3e6b-4b75-9bef-\
+21f21c5ccb21"],
+
+Cell["", "Text",
+ CellChangeTimes->{{3.711818894468622*^9, 
+  3.711818894535679*^9}},ExpressionUUID->"d805dfe4-c45c-4dd8-ade5-\
+e3ef0866947a"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{810, 876},
+WindowMargins->{{Automatic, 870}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (March 13, 2017)",
+StyleDefinitions->"MyNotepad.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 258, 4, 93, "Title", "ExpressionUUID" -> \
+"1c230c62-b06a-401a-ad34-9acd247fe815"],
+Cell[841, 28, 165, 3, 32, "Text", "ExpressionUUID" -> \
+"848d4016-6063-432b-a67f-f3a1f314e5d8"],
+Cell[CellGroupData[{
+Cell[1031, 35, 186, 3, 66, "Chapter", "ExpressionUUID" -> \
+"8b6a6aea-f670-464b-9128-199c8dd7298a"],
+Cell[CellGroupData[{
+Cell[1242, 42, 179, 3, 61, "Subchapter", "ExpressionUUID" -> \
+"6a67bb77-e999-4370-b4bc-878f63a48be4"],
+Cell[CellGroupData[{
+Cell[1446, 49, 166, 3, 69, "Section", "ExpressionUUID" -> \
+"0168c141-06f9-4e08-98fe-6faed806cdbd"],
+Cell[1615, 54, 364, 7, 58, "Text", "ExpressionUUID" -> \
+"c4d6841e-eb05-44e0-ae0c-ff074423e80b"],
+Cell[CellGroupData[{
+Cell[2004, 65, 195, 4, 26, "Item", "ExpressionUUID" -> \
+"7b38e7bf-48bc-4b25-a330-4e42a1866ba1"],
+Cell[2202, 71, 1023, 23, 74, "ItemParagraph", "ExpressionUUID" -> \
+"076fc076-504b-48cf-8fc9-cc60eb080a30"]
+}, Open  ]],
+Cell[3240, 97, 386, 9, 33, "Text", "ExpressionUUID" -> \
+"e4091b43-cdef-43c8-a7bc-aae7210cef60"],
+Cell[CellGroupData[{
+Cell[3651, 110, 247, 5, 26, "Item", "ExpressionUUID" -> \
+"c7c5895f-5186-4a28-93c4-55186cf61270"],
+Cell[3901, 117, 825, 22, 73, "ItemParagraph", "ExpressionUUID" -> \
+"539e114f-2b05-442c-b408-a6dba94267d5"]
+}, Open  ]],
+Cell[4741, 142, 297, 9, 32, "Text", "ExpressionUUID" -> \
+"290119ec-10ba-4606-80ec-9298df1b3863"],
+Cell[5041, 153, 325, 8, 26, "DisplayFormula", "ExpressionUUID" -> \
+"2739be5c-595d-4502-9f56-8acca457d689"],
+Cell[5369, 163, 1268, 43, 57, "Text", "ExpressionUUID" -> \
+"990975b7-566b-4d28-ada1-4d837b5806e8"],
+Cell[6640, 208, 461, 14, 34, "DisplayFormula", "ExpressionUUID" -> \
+"b6280709-ba42-41e9-8478-0d03dce02c81"],
+Cell[7104, 224, 1051, 37, 35, "Text", "ExpressionUUID" -> \
+"73a9185d-2524-4a8a-b325-ba9446232ecb"],
+Cell[8158, 263, 455, 14, 33, "Text", "ExpressionUUID" -> \
+"9ffd17ff-7d0c-41b1-8392-12444963cae3"],
+Cell[8616, 279, 519, 15, 44, "DisplayFormula", "ExpressionUUID" -> \
+"9ec4cb32-9230-48c3-b698-aee31bcafb3c"],
+Cell[9138, 296, 305, 7, 32, "Text", "ExpressionUUID" -> \
+"04574f5c-1a66-49b6-9d66-e7ed5e4f6968"],
+Cell[9446, 305, 185, 3, 32, "Text", "ExpressionUUID" -> \
+"88c41d0a-04b6-473c-bb2c-70ed90294bc8"],
+Cell[9634, 310, 564, 18, 24, "ItemParagraph", "ExpressionUUID" -> \
+"671f9d90-c304-4bfb-ba8a-deaee13858f3"],
+Cell[10201, 330, 184, 3, 32, "Text", "ExpressionUUID" -> \
+"dcc7afa5-59f8-4572-bb13-c1dc87186eef"],
+Cell[10388, 335, 363, 7, 23, "ItemParagraph", "ExpressionUUID" -> \
+"ac52881a-9ae3-42b6-b63a-b595d01fd904"],
+Cell[10754, 344, 275, 8, 66, "Text", "ExpressionUUID" -> \
+"150e572e-a710-4cf2-a6e0-b177cda02d34"],
+Cell[11032, 354, 346, 9, 30, "DisplayFormulaNumbered", "ExpressionUUID" -> \
+"d9bffd09-4c7e-497c-9e1e-abcdaf0a4093"],
+Cell[11381, 365, 170, 3, 32, "Text", "ExpressionUUID" -> \
+"860c69a4-6915-437a-98e7-e8b22832defe"],
+Cell[11554, 370, 440, 13, 26, "DisplayFormula", "ExpressionUUID" -> \
+"64d4818f-5d54-45d8-9a77-f5497593cb06"],
+Cell[11997, 385, 421, 13, 33, "Text", "ExpressionUUID" -> \
+"6313dedd-3e6b-4b75-9bef-21f21c5ccb21"],
+Cell[12421, 400, 142, 3, 32, "Text", "ExpressionUUID" -> \
+"d805dfe4-c45c-4dd8-ade5-e3ef0866947a"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

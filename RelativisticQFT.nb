@@ -1,0 +1,732 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24170,        724]
+NotebookOptionsPosition[     21015,        611]
+NotebookOutlinePosition[     21352,        626]
+CellTagsIndexPosition[     21309,        623]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$HistoryLength", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"\[HBar]", ",", " ", "Constant"}], "]"}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.697031885492876*^9, 3.697031898934395*^9}, {
+  3.697130064578333*^9, 3.6971300759974947`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["An Introduction to Relativistic Quantum Field Theory", "Title",
+ CellChangeTimes->{{3.697031049589892*^9, 3.697031049693245*^9}, {
+  3.697031112153969*^9, 3.697031127876771*^9}}],
+
+Cell["By Harrison Totty <harrisont@wolfram.com>", "Subtitle",
+ CellChangeTimes->{{3.697031144317238*^9, 3.6970311536839952`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Mathematical Preface", "Chapter",
+ CellChangeTimes->{{3.6970379729040117`*^9, 3.6970379870364923`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Complex Mathematics", "Section",
+ CellChangeTimes->{{3.697038314610965*^9, 3.69703833646128*^9}}],
+
+Cell["Below we define the definition of the complex conjugate:", "Text",
+ CellChangeTimes->{{3.697038342504531*^9, 3.6970383636091413`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox["\[Psi]_", "*"], ":=", 
+   RowBox[{"\[Psi]", " ", "/.", " ", 
+    RowBox[{
+     RowBox[{"Complex", "[", 
+      RowBox[{"u_", ",", " ", "v_"}], "]"}], "\[Rule]", " ", 
+     RowBox[{"Complex", "[", 
+      RowBox[{"u", ",", " ", 
+       RowBox[{"-", "v"}]}], "]"}]}]}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6970383659528227`*^9, 3.697038412192711*^9}}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.6971280880569983`*^9, 3.697128090533758*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Psi]", "=", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"\[ImaginaryI]", " ", "x"}]]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ SuperscriptBox["\[Psi]", "*"]}], "Input",
+ CellChangeTimes->{{3.697128115691944*^9, 3.697128223619688*^9}, {
+  3.697128647274723*^9, 3.697128650155299*^9}}],
+
+Cell[BoxData[
+ SuperscriptBox["\[ExponentialE]", 
+  RowBox[{
+   RowBox[{"-", "\[ImaginaryI]"}], " ", "x"}]]], "Output",
+ CellChangeTimes->{3.697128225155673*^9, 3.697128655619749*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Commutation", "Section",
+ CellChangeTimes->{{3.697038008367496*^9, 3.697038011383025*^9}}],
+
+Cell["Below are definitions for the commutation of operators", "Text",
+ CellChangeTimes->{{3.697033253654806*^9, 3.6970332753444557`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", "Commutation", " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "Commutation", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Commutation", "[", 
+      RowBox[{"a_", ",", " ", "b_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"a", "[", "b", "]"}], " ", "-", " ", 
+      RowBox[{"b", "[", "a", "]"}]}]}], ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.697033285054782*^9, 3.697033328702207*^9}, {
+  3.69703820559205*^9, 3.697038230511894*^9}, {3.697126893449122*^9, 
+  3.69712690508738*^9}, {3.697130355549902*^9, 3.6971304602184677`*^9}}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.697128249103611*^9, 3.697128252097383*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    OverscriptBox["a", "^"], "[", "\[Psi]_", "]"}], ":=", 
+   RowBox[{"\[ImaginaryI]", " ", "\[HBar]", " ", "\[Psi]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    OverscriptBox["b", "^"], "[", "\[Psi]_", "]"}], ":=", 
+   RowBox[{"\[Psi]", "+", "\[HBar]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Commutation", "[", 
+  RowBox[{
+   OverscriptBox["a", "^"], ",", 
+   OverscriptBox["b", "^"]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.697128268221238*^9, 3.697128458670882*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "\[HBar]"}], "-", 
+  OverscriptBox["a", "^"], "+", 
+  RowBox[{"\[ImaginaryI]", " ", "\[HBar]", " ", 
+   OverscriptBox["b", "^"]}]}]], "Output",
+ CellChangeTimes->{3.69712846014251*^9, 3.6971300811482983`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Dirac Notation", "Section",
+ CellChangeTimes->{{3.697038943055382*^9, 3.697038945899893*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"The", " ", "one"}], "-", 
+     RowBox[{"dimensional", " ", "inner", " ", "product"}]}], ",", " ", 
+    RowBox[{"with", " ", "specified", " ", "bounds"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]_", ",", " ", "\[Phi]_", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"lower_", ",", " ", "upper_"}], "}"}]}], 
+      "\[RightAngleBracket]"}], ":=", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["\[Psi]", "*"], "\[Phi]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", "lower", ",", " ", "upper"}], "}"}]}], "]"}]}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]_", ",", " ", 
+       OverscriptBox["op_", "^"], ",", " ", "\[Phi]_", ",", 
+       RowBox[{"{", 
+        RowBox[{"lower_", ",", " ", "upper_"}], "}"}]}], 
+      "\[RightAngleBracket]"}], ":=", 
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]", ",", " ", 
+       RowBox[{
+        OverscriptBox["op", "^"], "[", "\[Phi]", "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"lower", ",", " ", "upper"}], "}"}]}], 
+      "\[RightAngleBracket]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"The", " ", "one"}], "-", 
+      RowBox[{"dimensional", " ", "inner", " ", "product"}]}], ",", " ", 
+     RowBox[{"with", " ", "unspecified", " ", "bounds"}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]_", ",", " ", "\[Phi]_"}], "\[RightAngleBracket]"}], ":=", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["\[Psi]", "*"], "\[Phi]"}], ",", " ", "x"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]_", ",", " ", 
+       OverscriptBox["op_", "^"], ",", " ", "\[Phi]_"}], 
+      "\[RightAngleBracket]"}], ":=", 
+     RowBox[{"\[LeftAngleBracket]", 
+      RowBox[{"\[Psi]", ",", " ", 
+       RowBox[{
+        OverscriptBox["op", "^"], "[", "\[Phi]", "]"}]}], 
+      "\[RightAngleBracket]"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6970389540107*^9, 3.697039197634266*^9}, {
+  3.69712688035494*^9, 3.697126889126541*^9}, {3.697127968247074*^9, 
+  3.697127973725698*^9}, {3.6971292104911346`*^9, 3.69712930898903*^9}, {
+  3.69712937726451*^9, 3.697129609390913*^9}, {3.697129794769545*^9, 
+  3.6971298285929213`*^9}, {3.6971299356197643`*^9, 3.697129974102254*^9}}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.697128564339698*^9, 3.697128566599188*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Psi]", "=", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"\[ImaginaryI]", " ", "x"}]]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"\[Psi]", ",", " ", "\[Psi]"}], "\[RightAngleBracket]"}]}], "Input",\
+
+ CellChangeTimes->{{3.6971287648623333`*^9, 3.697128792653487*^9}}],
+
+Cell[BoxData["x"], "Output",
+ CellChangeTimes->{3.697128793339254*^9, 3.697129325167045*^9, 
+  3.697129615115424*^9, 3.69712983449936*^9, 3.697130085053287*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Psi]", "=", 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"\[ImaginaryI]", " ", "x"}]]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     OverscriptBox["a", "^"], "[", "\[Psi]_", "]"}], ":=", 
+    RowBox[{"\[ImaginaryI]", " ", "\[HBar]", " ", "\[Psi]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"\[Psi]", ",", " ", 
+   OverscriptBox["a", "^"], ",", " ", "\[Psi]"}], 
+  "\[RightAngleBracket]"}]}], "Input",
+ CellChangeTimes->{{3.697128115691944*^9, 3.697128223619688*^9}, {
+  3.697128571413086*^9, 3.697128577104354*^9}, {3.697128609241056*^9, 
+  3.6971286412358017`*^9}, {3.6971286762041607`*^9, 3.6971287457335653`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[ImaginaryI]", " ", "x", " ", "\[HBar]"}]], "Output",
+ CellChangeTimes->{3.697128747673059*^9, 3.697129327964897*^9, 
+  3.697129617348106*^9, 3.697129843908725*^9, 3.697130087433029*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Chapter 1 - A Review of Nonrelativistic Quantum Mechanics", "Chapter",
+ CellChangeTimes->{{3.697031164338874*^9, 3.697031190334818*^9}, {
+  3.697031669207017*^9, 3.6970316709691973`*^9}, {3.697623642622261*^9, 
+  3.6976236488039*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Section 1.1 - State Functions & Operators", "Section",
+ CellChangeTimes->{{3.697031207396653*^9, 3.697031235562086*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["1.1.1 - State Functions", "Subsection",
+ CellChangeTimes->{{3.697031940842206*^9, 3.6970319601527157`*^9}}],
+
+Cell[TextData[{
+ "Quantum Mechanics is founded on the principle that all relevant information \
+about a system at a particular instant in time may be derivable from the ",
+ StyleBox["state function",
+  FontSlant->"Italic"],
+ ", otherwise known as the ",
+ StyleBox["wave function",
+  FontSlant->"Italic"],
+ ", of the system at that specific instant of time. A proper state function \
+must be square integrable, and each possible state function corresponds to a \
+unique ray in Hilbert space. Only the \[OpenCurlyDoubleQuote]direction\
+\[CloseCurlyDoubleQuote] of this ray is relevant to its underlying physical \
+meaning, and therefore any two state functions which are scalar multiples of \
+each other represent the same state."
+}], "Text",
+ CellChangeTimes->{{3.697031243116267*^9, 3.6970316375794373`*^9}}],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s define some helpful functions for the representation \
+of such state functions:\
+\>", "Text",
+ CellChangeTimes->{{3.697031641510992*^9, 3.697031649564706*^9}, {
+  3.6970316818812304`*^9, 3.6970316935749893`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1.1.2 - Operators", "Subsection",
+ CellChangeTimes->{{3.697031951223343*^9, 3.697031964214254*^9}}],
+
+Cell["\<\
+Quantum Mechanics postulates that to every observable quantity (\
+\[OpenCurlyDoubleQuote]Position\[CloseCurlyDoubleQuote] for instance), \
+corresponds an unique self-adjoint operator, sporting eigenfunctions with \
+eigenvalues corresponding to potentially observable quantities.\
+\>", "Text",
+ CellChangeTimes->{{3.697031980756081*^9, 3.697032129057036*^9}, {
+  3.6970322201067877`*^9, 3.6970322533925123`*^9}, {3.697032427321809*^9, 
+  3.697032446134296*^9}}],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s define some helpful functions for the representation \
+of some notable operators:\
+\>", "Text",
+ CellChangeTimes->{{3.69703245639517*^9, 3.697032497812254*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"The", " ", "one"}], "-", 
+    RowBox[{"dimensional", " ", "position", " ", "operator"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      OverscriptBox["x", "^"], "[", "\[Psi]_", "]"}], ":=", 
+     RowBox[{"\[Psi]", " ", "x"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"The", " ", "one"}], "-", 
+     RowBox[{"dimensional", " ", "momentum", " ", "operator"}]}], " ", "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      OverscriptBox["\[Rho]", "^"], "[", "\[Psi]_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"-", "\[ImaginaryI]"}], " ", "\[HBar]", " ", 
+      RowBox[{
+       SubscriptBox["\[PartialD]", "x"], "\[Psi]"}]}]}], ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.697032512451673*^9, 3.6970325973556957`*^9}, {
+  3.697032661795886*^9, 3.697032738023129*^9}, {3.697032774382378*^9, 
+  3.697032894376175*^9}, {3.697033033937742*^9, 3.69703307593327*^9}, {
+  3.697033107530408*^9, 3.697033191910069*^9}, {3.697038649497422*^9, 
+  3.697038660635041*^9}, {3.6970438176499033`*^9, 3.69704383048335*^9}, {
+  3.697125966857563*^9, 3.697125984039913*^9}, {3.6971268016024446`*^9, 
+  3.697126808972578*^9}, {3.6971268550582657`*^9, 3.697126861738029*^9}, {
+  3.6971277278103447`*^9, 3.697127729367626*^9}}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.697128545193255*^9, 3.697128547388205*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Psi]", "=", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"\[ImaginaryI]", " ", "x"}]]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[LeftAngleBracket]", 
+   RowBox[{"\[Psi]", ",", " ", 
+    OverscriptBox["x", "^"], ",", " ", "\[Psi]"}], "\[RightAngleBracket]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"\[Psi]", ",", " ", 
+   OverscriptBox["\[Rho]", "^"], ",", " ", "\[Psi]"}], 
+  "\[RightAngleBracket]"}]}], "Input",
+ CellChangeTimes->{{3.697128827619546*^9, 3.6971288463709583`*^9}, {
+  3.697128999744416*^9, 3.697129098417584*^9}, {3.697129134056924*^9, 
+  3.6971291971092987`*^9}, {3.6971293370698547`*^9, 3.697129342513118*^9}, {
+  3.697129649910087*^9, 3.697129662226915*^9}, {3.697129739571154*^9, 
+  3.697129749175791*^9}, {3.697129859096428*^9, 3.6971298648204308`*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  SuperscriptBox["x", "2"], "2"]], "Output",
+ CellChangeTimes->{
+  3.697128849079829*^9, {3.697129103625189*^9, 3.697129105999267*^9}, {
+   3.697129153376615*^9, 3.697129198029121*^9}, 3.6971293441178293`*^9, 
+   3.697129621308984*^9, 3.697129663268814*^9, {3.697129740286571*^9, 
+   3.697129749721871*^9}, {3.69712985491364*^9, 3.6971298653132677`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"x", " ", "\[HBar]"}]], "Output",
+ CellChangeTimes->{
+  3.697128849079829*^9, {3.697129103625189*^9, 3.697129105999267*^9}, {
+   3.697129153376615*^9, 3.697129198029121*^9}, 3.6971293441178293`*^9, 
+   3.697129621308984*^9, 3.697129663268814*^9, {3.697129740286571*^9, 
+   3.697129749721871*^9}, {3.69712985491364*^9, 3.697129865314127*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1.1.3 - Expectation Values", "Subsection",
+ CellChangeTimes->{{3.6971275790291977`*^9, 3.697127588326826*^9}}],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s define some helpful functions for the representation \
+of the expectation value:\
+\>", "Text",
+ CellChangeTimes->{{3.69703245639517*^9, 3.697032497812254*^9}, {
+  3.697127896916147*^9, 3.697127903081944*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"The", " ", "one"}], "-", 
+    RowBox[{"dimensional", " ", "expectation", " ", "value"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[LeftAngleBracket]", 
+      OverscriptBox["op_", "^"], "\[RightAngleBracket]"}], "[", "\[Psi]_", 
+     "]"}], ":=", 
+    RowBox[{"\[LeftAngleBracket]", 
+     RowBox[{"\[Psi]", ",", 
+      OverscriptBox["op", "^"], ",", "\[Psi]"}], "\[RightAngleBracket]"}]}], 
+   ";"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.697032512451673*^9, 3.6970325973556957`*^9}, {
+   3.697032661795886*^9, 3.697032738023129*^9}, {3.697032774382378*^9, 
+   3.697032894376175*^9}, {3.697033033937742*^9, 3.69703307593327*^9}, {
+   3.697033107530408*^9, 3.697033191910069*^9}, {3.697038649497422*^9, 
+   3.697038660635041*^9}, {3.6970438176499033`*^9, 3.69704383048335*^9}, {
+   3.697125966857563*^9, 3.697125984039913*^9}, {3.6971268016024446`*^9, 
+   3.697126808972578*^9}, {3.6971268550582657`*^9, 3.697126861738029*^9}, {
+   3.697127716995228*^9, 3.697127825237627*^9}, {3.697127906700057*^9, 
+   3.697127951011899*^9}, 3.697127996964003*^9}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.69712853640362*^9, 3.697128539353758*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[LeftAngleBracket]", 
+   OverscriptBox["\[Rho]", "^"], "\[RightAngleBracket]"}], "[", 
+  SuperscriptBox["\[ExponentialE]", 
+   RowBox[{"\[ImaginaryI]", " ", "x"}]], "]"}]], "Input",
+ CellChangeTimes->{{3.6971280034331913`*^9, 3.697128038693536*^9}}],
+
+Cell[BoxData[
+ RowBox[{"x", " ", "\[HBar]"}]], "Output",
+ CellChangeTimes->{3.697128041432437*^9, 3.697129903801424*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Section 1.2 - Time Evolution & The Schr\[ODoubleDot]dinger and Heisenberg \
+Pictures\
+\>", "Section",
+ CellChangeTimes->{{3.697127115579398*^9, 3.697127187727085*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["1.2.1 - The Schr\[ODoubleDot]dinger Equation", "Subsection",
+ CellChangeTimes->{{3.697127203662656*^9, 3.6971272182395*^9}}],
+
+Cell["\<\
+The time evolution of a Quantum Mechanical system is governed y the Schr\
+\[ODoubleDot]dinger Equation, a first-order linear differential equation.\
+\>", "Text",
+ CellChangeTimes->{{3.6971272435407677`*^9, 3.6971272883266497`*^9}}],
+
+Cell["Let\[CloseCurlyQuote]s define some useful functions:", "Text",
+ CellChangeTimes->{{3.697127296627836*^9, 3.697127317441753*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"The", " ", "one"}], "-", 
+    RowBox[{
+    "dimensional", " ", "Schr\[ODoubleDot]dinger", " ", "Equation"}]}], " ", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "Schr\[ODoubleDot]dingerRelation", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Schr\[ODoubleDot]dingerRelation", "[", 
+      RowBox[{
+       OverscriptBox["H_", "^"], ",", " ", "\[Psi]_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       OverscriptBox["H", "^"], "[", "\[Psi]", "]"}], "\[Equal]", " ", 
+      RowBox[{"\[ImaginaryI]", " ", "\[HBar]", " ", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", "t"], "\[Psi]"}]}]}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.6971273336180897`*^9, 3.697127384957464*^9}, {
+  3.697127444334873*^9, 3.697127507078923*^9}, {3.697127602485207*^9, 
+  3.697127666707005*^9}, {3.697130024308416*^9, 3.697130040643165*^9}}],
+
+Cell["Examples:", "Text",
+ CellChangeTimes->{{3.697130487335868*^9, 3.6971305020871964`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Chapter 9 - Quantization of the Electromagnetic Field", "Chapter",
+ CellChangeTimes->{{3.697623095242363*^9, 3.697623109040698*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["9.1 - Classical Lagrangian", "Section",
+ CellChangeTimes->{{3.6976231189018373`*^9, 3.697623137349627*^9}}],
+
+Cell["\<\
+In the classical sense, a gauge invariant Lagrangian for the generalize \
+electromagnetic field is given by the following (in a notation that is \
+particularly relevant to us):\
+\>", "Text",
+ CellChangeTimes->{{3.697623157864738*^9, 3.69762322631522*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"L", "[", "F_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "4"]}], 
+    SubscriptBox["F", 
+     RowBox[{"\[Mu]", " ", "v"}]], 
+    SuperscriptBox["F", 
+     RowBox[{"\[Mu]", " ", "v"}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6976232352008667`*^9, 3.697623342822867*^9}}],
+
+Cell[TextData[{
+ "Where ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["F", "\[Mu]v"], "is", " ", "the", " ", "electromagnetic", 
+    " ", "field", " ", "tensor", " ", "which", " ", "is", " ", "related", " ",
+     "to", " ", "the", " ", "potentials", " ", "by", " ", "the", " ", 
+    "following", " ", 
+    RowBox[{"relation", ":"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.697623363803668*^9, 3.697623410536296*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["F", "\[Mu]v"], "[", "x_", "]"}], ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"\[PartialD]", 
+      RowBox[{
+       SuperscriptBox["A", "\[Mu]"], "[", "x", "]"}]}], 
+     RowBox[{"\[PartialD]", 
+      SubscriptBox["x", "v"]}]], "-", 
+    FractionBox[
+     RowBox[{"\[PartialD]", 
+      RowBox[{
+       SuperscriptBox["A", "v"], "[", "x", "]"}]}], 
+     RowBox[{"\[PartialD]", 
+      SubscriptBox["x", "\[Mu]"]}]]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.69762343547542*^9, 3.6976235408501663`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1600, 876},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (September 4, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 353, 8, 68, "Input",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[936, 32, 184, 2, 93, "Title"],
+Cell[1123, 36, 129, 1, 51, "Subtitle"],
+Cell[CellGroupData[{
+Cell[1277, 41, 109, 1, 66, "Chapter"],
+Cell[CellGroupData[{
+Cell[1411, 46, 103, 1, 65, "Section"],
+Cell[1517, 49, 140, 1, 33, "Text"],
+Cell[1660, 52, 433, 12, 49, "Input",
+ InitializationCell->True],
+Cell[2096, 66, 93, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[2214, 71, 363, 9, 74, "Input"],
+Cell[2580, 82, 183, 4, 34, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2812, 92, 96, 1, 65, "Section"],
+Cell[2911, 95, 138, 1, 33, "Text"],
+Cell[3052, 98, 680, 17, 94, "Input",
+ InitializationCell->True],
+Cell[3735, 117, 91, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[3851, 122, 556, 16, 93, "Input"],
+Cell[4410, 140, 247, 6, 34, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4706, 152, 99, 1, 65, "Section"],
+Cell[4808, 155, 2754, 72, 186, "Input",
+ InitializationCell->True],
+Cell[7565, 229, 91, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[7681, 234, 387, 10, 75, "Input"],
+Cell[8071, 246, 160, 2, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8268, 253, 762, 18, 103, "Input"],
+Cell[9033, 273, 211, 3, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9305, 283, 240, 3, 66, "Chapter"],
+Cell[CellGroupData[{
+Cell[9570, 290, 126, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[9721, 295, 113, 1, 44, "Subsection"],
+Cell[9837, 298, 808, 15, 77, "Text"],
+Cell[10648, 315, 245, 5, 33, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10930, 325, 105, 1, 45, "Subsection"],
+Cell[11038, 328, 470, 8, 55, "Text"],
+Cell[11511, 338, 193, 4, 33, "Text"],
+Cell[11707, 344, 1444, 35, 133, "Input",
+ InitializationCell->True],
+Cell[13154, 381, 91, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[13270, 386, 931, 20, 124, "Input"],
+Cell[14204, 408, 382, 7, 56, "Output"],
+Cell[14589, 417, 364, 6, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15002, 429, 116, 1, 45, "Subsection"],
+Cell[15121, 432, 241, 5, 33, "Text"],
+Cell[15365, 439, 1193, 26, 73, "Input",
+ InitializationCell->True],
+Cell[16561, 467, 90, 1, 33, "Text"],
+Cell[CellGroupData[{
+Cell[16676, 472, 285, 6, 42, "Input"],
+Cell[16964, 480, 120, 2, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17145, 489, 177, 4, 65, "Section"],
+Cell[CellGroupData[{
+Cell[17347, 497, 130, 1, 45, "Subsection"],
+Cell[17480, 500, 241, 4, 33, "Text"],
+Cell[17724, 506, 134, 1, 33, "Text"],
+Cell[17861, 509, 1010, 27, 103, "Input",
+ InitializationCell->True],
+Cell[18874, 538, 93, 1, 33, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19028, 546, 138, 1, 66, "Chapter"],
+Cell[CellGroupData[{
+Cell[19191, 551, 113, 1, 65, "Section"],
+Cell[19307, 554, 265, 5, 33, "Text"],
+Cell[19575, 561, 344, 11, 58, "Input"],
+Cell[19922, 574, 478, 12, 33, "Text"],
+Cell[20403, 588, 572, 18, 66, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

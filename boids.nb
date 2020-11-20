@@ -1,0 +1,537 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     22254,        529]
+NotebookOptionsPosition[     21824,        512]
+NotebookOutlinePosition[     22160,        527]
+CellTagsIndexPosition[     22117,        524]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$HistoryLength", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "CreateBoid", ",", " ", "CreateBoidCollection", ",", " ", "CopyBoid", ",",
+      " ", "SameBoidQ", ",", " ", "SameBoidTypeQ", ",", " ", "BoidPlot", ",", 
+     " ", "SingleAcceleration", ",", " ", "NetAcceleration", ",", " ", 
+     "NewVelocity", ",", " ", "NewPosition", ",", " ", "UpdateBoid", ",", " ",
+      "UpdateBoids", ",", " ", "RenderSimulation", ",", " ", 
+     "RunSimulation"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CreateBoid", "[", 
+     RowBox[{
+     "id_", ",", " ", "pos_", ",", " ", "vel_", ",", " ", "acc_", ",", " ", 
+      "type_"}], "]"}], ":=", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<ID\>\"", "\[Rule]", "id"}], ",", " ", 
+      RowBox[{"\"\<Position\>\"", "\[Rule]", "pos"}], ",", " ", 
+      RowBox[{"\"\<Velocity\>\"", "\[Rule]", "vel"}], ",", 
+      RowBox[{"\"\<Acceleration\>\"", "\[Rule]", "acc"}], ",", " ", 
+      RowBox[{"\"\<Type\>\"", "\[Rule]", "type"}]}], "|>"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CopyBoid", "[", "boid_", "]"}], ":=", 
+    RowBox[{"CreateBoid", "[", 
+     RowBox[{
+      RowBox[{"boid", "[", 
+       RowBox[{"[", "\"\<ID\>\"", "]"}], "]"}], ",", " ", 
+      RowBox[{"boid", "[", 
+       RowBox[{"[", "\"\<Position\>\"", "]"}], "]"}], ",", " ", 
+      RowBox[{"boid", "[", 
+       RowBox[{"[", "\"\<Velocity\>\"", "]"}], "]"}], ",", " ", 
+      RowBox[{"boid", "[", 
+       RowBox[{"[", "\"\<Acceleration\>\"", "]"}], "]"}], ",", " ", 
+      RowBox[{"boid", "[", 
+       RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"SameBoidQ", "[", 
+     RowBox[{"boid1_", ",", " ", "boid2_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"boid1", "[", 
+      RowBox[{"[", "\"\<ID\>\"", "]"}], "]"}], "\[Equal]", 
+     RowBox[{"boid2", "[", 
+      RowBox[{"[", "\"\<ID\>\"", "]"}], "]"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"SameBoidTypeQ", "[", 
+     RowBox[{"boid1_", ",", " ", "boid2_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"boid1", "[", 
+      RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}], "\[Equal]", 
+     RowBox[{"boid2", "[", 
+      RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CreateBoidCollection", "[", 
+     RowBox[{
+     "n_", ",", " ", "posmin_", ",", " ", "posmax_", ",", " ", "velmin_", ",",
+       " ", "velmax_", ",", " ", "accmin_", ",", " ", "accmax_", ",", 
+      "ncolors_"}], "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"CreateBoid", "[", 
+       RowBox[{
+        RowBox[{"CreateUUID", "[", "]"}], ",", " ", 
+        RowBox[{"RandomReal", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"posmin", ",", " ", "posmax"}], "}"}], ",", "dimensions"}],
+          "]"}], ",", " ", 
+        RowBox[{"RandomReal", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"velmin", ",", " ", "velmax"}], "}"}], ",", "dimensions"}],
+          "]"}], ",", 
+        RowBox[{"RandomReal", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"accmin", ",", " ", "accmax"}], "}"}], ",", "dimensions"}],
+          "]"}], ",", " ", 
+        RowBox[{"RandomInteger", "[", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", " ", "ncolors"}], "}"}], "]"}]}], "]"}], ",", " ",
+       "n"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"BoidPlot", "[", 
+     RowBox[{"boids_", ",", " ", "property_", ",", "title_"}], "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"dimensions", "\[Equal]", "3"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"ListPointPlot3D", "[", 
+       RowBox[{
+        RowBox[{"boids", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", " ", "property"}], "]"}], "]"}], ",", " ", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "maxposition"}], ",", " ", "maxposition"}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "maxposition"}], ",", " ", "maxposition"}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "maxposition"}], ",", " ", "maxposition"}], "}"}]}],
+           "}"}]}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"PointSize", "[", "Medium", "]"}]}], ",", 
+        RowBox[{"Axes", "\[Rule]", "False"}], ",", " ", 
+        RowBox[{"PlotLabel", "\[Rule]", "title"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListPlot", "[", 
+       RowBox[{
+        RowBox[{"boids", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", " ", "property"}], "]"}], "]"}], ",", " ", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "maxposition"}], ",", "maxposition"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "maxposition"}], ",", " ", "maxposition"}], "}"}]}],
+           "}"}]}], ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", " ", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"PointSize", "[", "Medium", "]"}]}], ",", 
+        RowBox[{"Axes", "\[Rule]", "True"}], ",", " ", 
+        RowBox[{"PlotLabel", "\[Rule]", "title"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"SingleAcceleration", "[", 
+     RowBox[{"inputboid_", ",", " ", "comparisonboid_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"distancevector", "=", 
+        RowBox[{
+         RowBox[{"comparisonboid", "[", 
+          RowBox[{"[", "\"\<Position\>\"", "]"}], "]"}], "-", 
+         RowBox[{"inputboid", "[", 
+          RowBox[{"[", "\"\<Position\>\"", "]"}], "]"}]}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"SameBoidQ", "[", 
+          RowBox[{"inputboid", ",", "comparisonboid"}], "]"}], "||", 
+         RowBox[{
+          RowBox[{"Norm", "[", "distancevector", "]"}], "<", 
+          "mindistance"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", " ", "dimensions"}], "]"}], ",", " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"comparisonboid", "[", 
+            RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}], "==", 
+           RowBox[{"inputboid", "[", 
+            RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           FractionBox[
+            RowBox[{"1", "G"}], 
+            RowBox[{"Norm", "[", "distancevector", "]"}]], 
+           RowBox[{"Normalize", "[", "distancevector", "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           FractionBox[
+            RowBox[{
+             RowBox[{"-", "1"}], "G"}], 
+            SuperscriptBox[
+             RowBox[{"Norm", "[", "distancevector", "]"}], "2"]], " ", 
+           RowBox[{"Normalize", "[", "distancevector", "]"}]}]}], 
+         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NetAcceleration", "[", 
+     RowBox[{"inputboid_", ",", " ", "boids_"}], "]"}], ":=", 
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      RowBox[{"SingleAcceleration", "[", 
+       RowBox[{"inputboid", ",", " ", 
+        RowBox[{"boids", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", " ", 
+        RowBox[{"Length", "[", "boids", "]"}]}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NewVelocity", "[", 
+     RowBox[{"inputboid_", ",", " ", "netacceleration_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"inputboid", "[", 
+      RowBox[{"[", "\"\<Velocity\>\"", "]"}], "]"}], "+", 
+     RowBox[{"netacceleration", " ", "dt"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NewPosition", "[", 
+     RowBox[{"inputboid_", ",", " ", "newvelocity_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"inputboid", "[", 
+      RowBox[{"[", "\"\<Position\>\"", "]"}], "]"}], "+", 
+     RowBox[{"newvelocity", " ", "dt"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"UpdateBoid", "[", 
+     RowBox[{"boid_", ",", " ", "boids_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "newacceleration", ",", " ", "newvelocity", ",", " ", "newposition"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"newacceleration", " ", "=", " ", 
+        RowBox[{"NetAcceleration", "[", 
+         RowBox[{"boid", ",", " ", "boids"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Norm", "[", "newacceleration", "]"}], ">", 
+          "maxacceleration"}], ",", " ", 
+         RowBox[{"newacceleration", "=", 
+          RowBox[{"maxacceleration", " ", 
+           RowBox[{"Normalize", "[", "newacceleration", "]"}]}]}]}], "]"}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"newvelocity", "=", 
+        RowBox[{"NewVelocity", "[", 
+         RowBox[{"boid", ",", " ", "newacceleration"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Norm", "[", "newvelocity", "]"}], ">", "maxvelocity"}], 
+         ",", " ", 
+         RowBox[{"newvelocity", "=", 
+          RowBox[{"maxvelocity", " ", 
+           RowBox[{"Normalize", "[", "newvelocity", "]"}]}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"newposition", "=", " ", 
+        RowBox[{"NewPosition", "[", 
+         RowBox[{"boid", ",", " ", "newvelocity"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Norm", "[", "newposition", "]"}], ">", "maxposition"}], 
+         ",", " ", 
+         RowBox[{"newposition", "=", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Times", "[", 
+             RowBox[{
+              RowBox[{"-", "1"}], ",", " ", "#"}], "]"}], "&"}], "/@", " ", 
+           "newposition"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"CreateBoid", "[", 
+        RowBox[{
+         RowBox[{"boid", "[", 
+          RowBox[{"[", "\"\<ID\>\"", "]"}], "]"}], ",", " ", "newposition", 
+         ",", " ", "newvelocity", ",", "newacceleration", ",", 
+         RowBox[{"boid", "[", 
+          RowBox[{"[", "\"\<Type\>\"", "]"}], "]"}]}], "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"UpdateBoids", "[", "boids_", "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"newboids", "=", "boids"}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"newboids", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "=", 
+          RowBox[{"UpdateBoid", "[", 
+           RowBox[{
+            RowBox[{"boids", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", " ", "boids"}], "]"}]}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", 
+           RowBox[{"Length", "[", "boids", "]"}]}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "newboids"}]}], "\[IndentingNewLine]", "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"RunSimulation", "[", 
+     RowBox[{"initialboids_", ",", " ", "t_"}], "]"}], ":=", 
+    RowBox[{"Block", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"boidhistory", "=", 
+        RowBox[{"{", "initialboids", "}"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"boidhistory", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"boidhistory", ",", " ", 
+            RowBox[{"UpdateBoids", "[", 
+             RowBox[{"boidhistory", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", "t"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "boidhistory"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RenderSimulation", "[", 
+    RowBox[{"simulation_", ",", " ", "property_"}], "]"}], ":=", 
+   RowBox[{"Block", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rendereddata", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Image", "@", 
+          RowBox[{"BoidPlot", "[", 
+           RowBox[{
+            RowBox[{"simulation", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", " ", "property", ",", " ", 
+            RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", " ", 
+           RowBox[{"Length", "[", "simulation", "]"}]}], "}"}]}], "]"}]}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"ListAnimate", "[", 
+      RowBox[{"rendereddata", ",", " ", 
+       RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+       RowBox[{"DisplayAllSteps", "\[Rule]", "True"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.697648391748744*^9, 3.6976490718974648`*^9}, {
+   3.6976492279732857`*^9, 3.697649228122448*^9}, {3.6976492810494967`*^9, 
+   3.6976493874219418`*^9}, {3.697649474162149*^9, 3.697649504753455*^9}, {
+   3.697649625497443*^9, 3.69764979765734*^9}, {3.6976498353728037`*^9, 
+   3.697649857120346*^9}, {3.69765945471539*^9, 3.697659458185583*^9}, {
+   3.697659509987698*^9, 3.697659520419572*^9}, {3.697659604770472*^9, 
+   3.6976596405970297`*^9}, {3.697659721912612*^9, 3.6976597323645487`*^9}, {
+   3.6976598531040916`*^9, 3.6976598931871653`*^9}, {3.697659935387835*^9, 
+   3.697660091980342*^9}, {3.697660129612722*^9, 3.697660282521123*^9}, {
+   3.697660313937087*^9, 3.697660364946897*^9}, {3.697660413170755*^9, 
+   3.697660698267185*^9}, {3.697660754542035*^9, 3.69766106940735*^9}, {
+   3.697661106354745*^9, 3.697661449726882*^9}, {3.697715984033996*^9, 
+   3.6977161199363537`*^9}, {3.697716454847784*^9, 3.6977164593014603`*^9}, {
+   3.69771653772927*^9, 3.697716574724822*^9}, {3.697716729192659*^9, 
+   3.697716750841813*^9}, {3.6977170095169487`*^9, 3.69771700967063*^9}, {
+   3.697717066140077*^9, 3.697717066263731*^9}, {3.697717105544928*^9, 
+   3.697717115779044*^9}, {3.697717162514818*^9, 3.6977172098671627`*^9}, {
+   3.697717312246602*^9, 3.697717312408326*^9}, {3.6977175812344933`*^9, 
+   3.697717588875063*^9}, {3.697717741169354*^9, 3.697717899645335*^9}, {
+   3.697718046195765*^9, 3.6977181415116463`*^9}, {3.697718188964612*^9, 
+   3.697718223057808*^9}, {3.697718318978239*^9, 3.69771839505996*^9}, {
+   3.697718489229034*^9, 3.697718725986701*^9}, {3.6977188498446093`*^9, 
+   3.697718858318615*^9}, {3.6977190716091843`*^9, 3.697719097477541*^9}, {
+   3.6977244335619164`*^9, 3.697724443836887*^9}, {3.697729378851535*^9, 
+   3.697729398708393*^9}, {3.697736441968981*^9, 3.697736442123749*^9}, {
+   3.6977364951355553`*^9, 3.6977365417822227`*^9}, {3.697736573028549*^9, 
+   3.697736645922256*^9}, {3.69773667659179*^9, 3.697736697463402*^9}, {
+   3.697736865938939*^9, 3.697736897730317*^9}, {3.697736930413602*^9, 
+   3.6977369403460703`*^9}, 3.697737124546492*^9, {3.6977371623757277`*^9, 
+   3.697737180946557*^9}, {3.6977378165509043`*^9, 3.69773794113433*^9}, {
+   3.697737980455871*^9, 3.697738066258451*^9}, {3.697738213258173*^9, 
+   3.697738213454935*^9}, {3.697738391904046*^9, 3.697738412137218*^9}, 
+   3.697742072143052*^9, 3.69774212193591*^9, {3.6977423162182693`*^9, 
+   3.697742316422949*^9}, 3.697742495547147*^9, {3.697742651853394*^9, 
+   3.6977426650091553`*^9}, {3.6977427715431137`*^9, 
+   3.6977427773808317`*^9}, {3.6977428079187813`*^9, 3.697742809484521*^9}, {
+   3.697742955359138*^9, 3.697742956747642*^9}, {3.697818801781672*^9, 
+   3.697818849440845*^9}, {3.697818966539022*^9, 3.697818970927408*^9}, {
+   3.6978190884176683`*^9, 3.697819098250082*^9}, {3.697819261583001*^9, 
+   3.697819297454661*^9}, {3.6978194080983877`*^9, 3.697819470759334*^9}, {
+   3.6978195155813837`*^9, 3.697819517037067*^9}, {3.6979300129509*^9, 
+   3.697930019797268*^9}, {3.6979300991977663`*^9, 3.697930139278249*^9}, {
+   3.697930188983721*^9, 3.697930196824101*^9}, {3.697930227647586*^9, 
+   3.69793025026995*^9}, {3.697930293956872*^9, 3.697930297520136*^9}, {
+   3.6979304321472816`*^9, 3.697930475841737*^9}, {3.697930587851985*^9, 
+   3.697930588360963*^9}, {3.69793069212152*^9, 3.697930703659215*^9}, {
+   3.697930890229767*^9, 3.697931007010892*^9}, 3.697931121510858*^9, {
+   3.697931225653379*^9, 3.697931226603404*^9}, {3.697931330919879*^9, 
+   3.697931344047361*^9}, {3.697932062993677*^9, 3.6979321283700733`*^9}, {
+   3.697932500720427*^9, 3.6979325018366632`*^9}, {3.6979328029954863`*^9, 
+   3.697932803520961*^9}, {3.697933503790649*^9, 3.697933504025395*^9}, {
+   3.69793354019298*^9, 3.697933565549609*^9}, {3.69793364777454*^9, 
+   3.6979336522177763`*^9}, {3.697933787358941*^9, 3.697933797620064*^9}, {
+   3.709658921993498*^9, 3.709658935749123*^9}, {3.710175457296916*^9, 
+   3.710175458593245*^9}},ExpressionUUID->"546c2b76-d105-44c4-8dd1-\
+4ccc380c62ae"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{"boids", ",", " ", "sim", ",", "renderedsim"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"G", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dt", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dimensions", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxposition", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxvelocity", "=", "3"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxacceleration", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mindistance", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"boids", "=", 
+   RowBox[{"CreateBoidCollection", "[", 
+    RowBox[{"100", ",", 
+     RowBox[{"-", "100"}], ",", "200", ",", "0", ",", "3.5", ",", "0", ",", 
+     "0", ",", "3"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sim", "=", 
+   RowBox[{"RunSimulation", "[", 
+    RowBox[{"boids", ",", " ", "300"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"renderedsim", "=", 
+  RowBox[{"RenderSimulation", "[", 
+   RowBox[{"sim", ",", " ", "\"\<Position\>\""}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6977164281491013`*^9, 3.697716476392737*^9}, 
+   3.6977166032257137`*^9, 3.6977171416438017`*^9, 3.697717344884742*^9, {
+   3.697718261414055*^9, 3.697718261626975*^9}, 3.697718872524336*^9, {
+   3.697724457041917*^9, 3.697724465981058*^9}, {3.697736764590129*^9, 
+   3.697736773414647*^9}, 3.6977369703594093`*^9, {3.697741897798367*^9, 
+   3.697741901577478*^9}, {3.697742333925375*^9, 3.697742350772962*^9}, {
+   3.697818632094184*^9, 3.6978186358241034`*^9}, {3.697818725242043*^9, 
+   3.697818734160263*^9}, {3.6978189849917517`*^9, 3.6978189852130013`*^9}, {
+   3.6978191088906403`*^9, 3.697819109134379*^9}, {3.697819322753387*^9, 
+   3.697819323784854*^9}, {3.697930391919276*^9, 3.697930394162076*^9}, {
+   3.697930566881915*^9, 3.697930569001355*^9}, {3.6979319132451267`*^9, 
+   3.697931936038945*^9}, {3.697932146215454*^9, 3.697932150006999*^9}, {
+   3.697933664013001*^9, 3.697933664151402*^9}, {3.697933775704327*^9, 
+   3.6979337758443327`*^9}, {3.701174370238772*^9, 3.7011743708518467`*^9}, {
+   3.701174488905383*^9, 3.701174489006781*^9}, {3.709658969952457*^9, 
+   3.7096589863741293`*^9}, {3.709659171792906*^9, 3.7096591789431753`*^9}, {
+   3.70965931916687*^9, 3.7096593228007727`*^9}, {3.7096595331321363`*^9, 
+   3.709659539316176*^9}, {3.7101751062393723`*^9, 3.710175156071864*^9}, {
+   3.710175429447947*^9, 3.7101754317144117`*^9}, {3.710175463557953*^9, 
+   3.7101754644257603`*^9}},ExpressionUUID->"6995c5a3-e55b-4d94-893a-\
+cca468759c16"]
+},
+WindowSize->{1602, 905},
+WindowMargins->{{Automatic, 77}, {Automatic, 28}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 18548, 436, 1733, "Input", "ExpressionUUID" -> \
+"546c2b76-d105-44c4-8dd1-4ccc380c62ae",
+ InitializationCell->True],
+Cell[19109, 458, 2711, 52, 264, "Input", "ExpressionUUID" -> \
+"6995c5a3-e55b-4d94-893a-cca468759c16"]
+}
+]
+*)
+
